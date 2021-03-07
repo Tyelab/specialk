@@ -43,6 +43,23 @@ CREATE TABLE mouse (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table mouse_weights
+--
+
+CREATE TABLE mouse_weight (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  mouse_id int(11) NOT NULL,
+  mouse_weight int(5) DEFAULT NULL,
+  active tinyint(4) NOT NULL DEFAULT 1,
+  created datetime(6) NOT NULL,
+  updated timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (id),
+  KEY K__mouse_weight_mouse_id (mouse_id),
+  
+  CONSTRAINT FK__mouse_weight_mouse_id FOREIGN KEY (mouse_id) REFERENCES mouse (id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Table structure for table experimenter
 --
 
