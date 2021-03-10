@@ -87,12 +87,12 @@ CREATE TABLE surgery (
   mouse_id int(11) NOT NULL,
   experimenter_id int(8) NOT NULL,
   session_date_start datetime(6) NOT NULL,
-  session_date_end datetime(6)
+  session_date_end datetime(6),
   surgery_type varchar(255) DEFAULT NULL,
-  bregma float(6) DEFAULT NULL,
-  level_left float(6) DEFAULT NULL,
-  level_right float(6) DEFAULT NULL,
-  level_z float(6) DEFAULT NULL,
+  bregma DOUBLE(6,3) DEFAULT NULL,
+  level_left DOUBLE(6,3) DEFAULT NULL,
+  level_right DOUBLE(6,3) DEFAULT NULL,
+  level_z DOUBLE(6,3) DEFAULT NULL,
   surgery_notes varchar(255) DEFAULT NULL,
   surgery_path varchar(255) DEFAULT NULL,
   active tinyint(4) NOT NULL DEFAULT 1,
@@ -111,17 +111,17 @@ CREATE TABLE surgery (
 --
 
 CREATE TABLE surgery_injections(
-  id int(11) NOT NULL AUTO-INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   surgery_id int(11) NOT NULL,
   drug_type varchar(20) DEFAULT NULL,
   drug_target varchar(20) DEFAULT NULL,
   drug_method varchar(20) DEFAULT NULL,
-  drug_dose float(6) DEFAULT NULL,
-  drug_volume float(6) DEFAULT NULL,
+  drug_dose DOUBLE(6,3) DEFAULT NULL,
+  drug_volume DOUBLE(6,3) DEFAULT NULL,
   drug_bilateral BIT DEFAULT NULL,
-  ap float(6) DEFAULT NULL,
-  ml float(6) DEFAULT NULL,
-  dv float(6) DEFAULT NULL,
+  ap DOUBLE(6,3) DEFAULT NULL,
+  ml DOUBLE(6,3) DEFAULT NULL,
+  dv DOUBLE(6,3) DEFAULT NULL,
   injection_notes varchar(255) DEFAULT NULL,
   injection_success BIT DEFAULT NULL,
   active tinyint(4) NOT NULL DEFAULT 1,
@@ -131,21 +131,21 @@ CREATE TABLE surgery_injections(
   KEY K__surgery_injections_surgery_id (surgery_id),
   
   CONSTRAINT FK__surgery_injections_surgery_id FOREIGN KEY (surgery_id) REFERENCES surgery (id) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE==InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   
 --
 -- Table structure for surgery implants
 --
 
 CREATE TABLE surgery_implants(
-  id int(11) NOT NULL AUTO-INCREMENT,
+  id int(11) NOT NULL AUTO_INCREMENT,
   surgery_id int(11) NOT NULL,
   implant_type varchar(20) DEFAULT NULL,
   implant_target varchar(10) DEFAULT NULL,
-  implant_weight float(3) DEFAULT NULL,
-  ap float(6) DEFAULT NULL,
-  ml float(6) DEFAULT NULL,
-  dv float(6) DEFAULT NULL,
+  implant_weight tinyint(2) DEFAULT NULL,
+  ap DOUBLE(6,3) DEFAULT NULL,
+  ml DOUBLE(6,3) DEFAULT NULL,
+  dv DOUBLE(6,3) DEFAULT NULL,
   implant_notes varchar(255) DEFAULT NULL,
   implant_success BIT DEFAULT NULL,
   active tinyint(4) NOT NULL DEFAULT 1,
@@ -154,8 +154,8 @@ CREATE TABLE surgery_implants(
   PRIMARY KEY (id),
   KEY surgery_implants_surgery_id (surgery_id),
   
-  CONSTRAINTS FK__surgery_implants_surgery_id FOREIGN KEY (surgery_id) REFERENCES surgery (id) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE==InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT FK__surgery_implants_surgery_id FOREIGN KEY (surgery_id) REFERENCES surgery (id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for social behavior
