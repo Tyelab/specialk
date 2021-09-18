@@ -1,16 +1,8 @@
-# Team Specialk Database, datajoint_dev
+# Team Specialk Database
 
-This package is still in development. It is a library for composing, manipulating, and querying Team SpecialK databases.
+The beginning stages of compiling necessary metadata for animals and studies within Team Specialk have been completed. For now, data about different animals, surgeries, experiments, etc will be created by generating files. The best solution would be to develop a database, probably in DataJoint given its support for NWB files and many tools for storing neurophsyiology data, that can also interact with the Transnetyx Colony suite that has been recently adopted by the lab.
 
-## Installation
-
-As of 3/5/21, there is no self-contained installation through a package manager. There are no plans to port this to one. 
-Necessary packages can be installed using Anaconda repositories outlined in the Conda environment file.
-
-## Usage
-
-As of 3/5/21, these files will be done either through command line interfaces in Linux or via Jupyter notebooks.
-More thorough documentation is under development.
+Example files for subjects can be found inside of the specialk project directories on the snlktdata server in `animal_metadata`.
 
 ## Authors
 
@@ -25,6 +17,3 @@ Talk with Jeremy.
 ## Contributing
 
 Pull requests are always welcome.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
