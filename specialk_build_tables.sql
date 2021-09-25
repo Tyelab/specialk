@@ -29,18 +29,25 @@
 -- Table structure for table mouse
 --
 
-CREATE TABLE mouse (
+CREATE TABLE subjects (
   id int(11) NOT NULL AUTO_INCREMENT,
+  subject_id varchar(10) DEFAULT NULL,
+  subject_alias varchar(10) DEFAULT NULL,
+  dob date DEFAULT NULL,
   sex enum('M','F') DEFAULT NULL,
-  species varchar(10) DEFAULT 'Mice',
   strain varchar(50) DEFAULT NULL,
-  vendor varchar(20) DEFAULT NULL,
-  age int(11) DEFAULT 56,
-  arrived_on date DEFAULT NULL,
-  order_no varchar(20) DEFAULT NULL,
-  ard_id varchar(10) DEFAULT NULL,
-  cage_id int(11) DEFAULT NULL,
+  genotype varchar(20) DEFAULT NULL,
+  species varchar(20) DEFAULT 'Mus Musculus',
   exp_code enum('exp', 'con') DEFAULT NULL,
+  descript varchar(50) DEFAULT NULL,
+  l_eartag tinyint(1) DEFAULT NULL,
+  r_eartag tinyint(1) DEFAULT NULL,
+  l_earnotch int(2) DEFAULT NULL,
+  r_earnotch int(2) DEFAULT NULL,
+  cage_id  int(11) DEFAULT NULL,
+  vendor varchar(20) DEFAULT NULL,
+  arrival date DEFAULT NULL,
+  order_no varchar(20) DEFAULT NULL,
   active tinyint(4) NOT NULL DEFAULT 1,
   created datetime(6) NOT NULL,
   updated timestamp NULL DEFAULT current_timestamp(),
@@ -48,13 +55,24 @@ CREATE TABLE mouse (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for cages
+--
+
+CREATE TABLE cages (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  cage_id int(11),
+  cage_alias varchar(10)
+)
+
+
+--
 -- Table structure for table mouse_weights
 --
 
-CREATE TABLE mouse_weight (
+CREATE TABLE weights (
   id int(11) NOT NULL AUTO_INCREMENT,
-  mouse_id int(11) NOT NULL,
-  mouse_weight int(5) DEFAULT NULL,
+  subject_id int(11) NOT NULL,
+  weight int(5) DEFAULT NULL,
   active tinyint(4) NOT NULL DEFAULT 1,
   created datetime(6) NOT NULL,
   updated timestamp NULL DEFAULT current_timestamp(),
