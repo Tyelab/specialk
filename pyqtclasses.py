@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QMenu, QLineEdit, QHBoxLayout
+from PyQt6.QtWidgets import QGridLayout, QVBoxLayout, QApplication, QWidget, QPushButton, QLabel, QMenu, QLineEdit, QHBoxLayout
 from PyQt6.QtGui import QIcon, QFont, QPixmap, QMovie
 from PyQt6.QtCore import QSize
 import sys
@@ -12,8 +12,87 @@ class Window(QWidget):
         self.setWindowIcon(QIcon("ketamine.png"))
 
         self.setGeometry(0, 0, 600, 600)
-        self.setStyleSheet("background-color:blue")
-        self.setWindowOpacity(0.90)
+        # self.setStyleSheet("background-color:blue")
+        self.setWindowOpacity(1)
+
+        self.create_widget()
+
+    # Every widget gives a signal when an event is applied and each signal takes a slot/method
+    def create_widget(self):
+        hbox = QHBoxLayout()
+
+        btn1 = QPushButton("Change Text")
+        self.label = QLabel("Default Text")
+        # Connect method
+        btn1.clicked.connect(self.clicked_btn)
+
+        hbox.addWidget(btn1)
+        hbox.addWidget(self.label)
+
+        self.setLayout(hbox)
+
+    # Signal for button
+    def clicked_btn(self):
+        self.label.setText("New text!")
+
+        self.label.setFont(QFont("Times", 15))
+
+        self.label.setStyleSheet("color:red")
+
+
+
+
+        # Make Grid Layout
+        '''
+        grid = QGridLayout()
+
+        btn1 = QPushButton("one")
+        btn2 = QPushButton("two")
+        btn3 = QPushButton("three")
+        btn4 = QPushButton("four")
+        btn5 = QPushButton("five")
+        btn6 = QPushButton("six")
+        btn7 = QPushButton("seven")
+        btn8 = QPushButton("eight")
+
+        # Widget, row/column
+        grid.addWidget(btn1, 0, 0)
+        grid.addWidget(btn2, 0, 1)
+        grid.addWidget(btn3, 0, 2)
+        grid.addWidget(btn4, 0, 3)
+        grid.addWidget(btn5, 1, 0)
+        grid.addWidget(btn6, 1, 1)
+        grid.addWidget(btn7, 1, 2)
+        grid.addWidget(btn8, 1, 3)
+
+        self.setLayout(grid)
+        '''
+
+
+
+
+
+
+
+        # Add vertical layout for GUI
+        '''
+        vbox = QVBoxLayout()
+
+        btn1 = QPushButton("Click one")
+        btn2 = QPushButton("Click 2")
+        btn3 = QPushButton("Click 3")
+        btn4 = QPushButton("Click 4")
+
+        vbox.addWidget(btn1)
+        vbox.addWidget(btn2)
+        vbox.addWidget(btn3)
+        vbox.addWidget(btn4)
+        vbox.addSpacing(100)
+        vbox.addStretch(5)
+
+        self.setLayout(vbox)
+        '''
+
 
         # Add horizontal layout for GUI
         '''
